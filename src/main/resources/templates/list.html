@@ -28,6 +28,7 @@
 
 
 
+
         <div sec:authorize="hasAuthority('USER')">
             <table>
                 <tr>
@@ -39,6 +40,7 @@
                     <td th:text="${message.title}"></td>
                     <td th:text="${message.user.username}"></td>
                     <td th:text="${message.postDate}"></td>
+                    <td th:text="${message.user.firstName}"></td>
                     <td>
                 <span th:if="${user_id == message.user.id}">
                     <a th:href="@{/update/{id}(id=${message.id})}">Update</a>
@@ -46,8 +48,13 @@
                 </span>
                         <a th:href="@{/detail/{id}(id=${message.id})}">Details</a>
                     </td>
+                    <p th:text="${message.user.filename}"></p>
+                    <div th:each="res:${message.user.result}">
+                        <p th:text="${res}"></p>
+                    </div>
                 </tr>
             </table>
+
         </div>
             <div sec:authorize="hasAuthority('ADMIN')">
                 <table>
